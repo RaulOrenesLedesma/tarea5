@@ -1,0 +1,176 @@
+/* ===== Variables CSS ===== */
+    :root {
+      --bg: #f4f4f4;
+      --primary: #c62828;
+      --dark: #333;
+      --light: #fff;
+      --shadow: 0 4px 10px rgba(0,0,0,0.1);
+      --radius: 12px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+    }
+
+    /* ===== Layout base (mobile first <600px) ===== */
+    .grid {
+      display: grid;
+      grid-template-areas:
+        "header"
+        "main"
+        "footer";
+      grid-template-rows: 70px 1fr 60px;
+      min-height: 100vh;
+    }
+
+    header {
+      grid-area: header;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    aside {
+      display: none;
+    }
+
+    main {
+      grid-area: main;
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    footer {
+      grid-area: footer;
+      background: var(--dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Card ===== */
+    .card {
+      position: relative;
+      width: 260px;
+      background: var(--light);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      background: #fafafa;
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-content {
+      padding: 0.8rem;
+    }
+
+    .card-content h3 {
+      margin-bottom: 0.3rem;
+    }
+
+    .card-content p {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* Hover overlay */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .card:hover .overlay {
+      opacity: 1;
+    }
+
+    .icons {
+      display: flex;
+      gap: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .like.active {
+      color: red;
+    }
+
+    /* Button */
+    .card button {
+      margin-top: 0.6rem;
+      padding: 0.4rem 0.6rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .card button.clicked {
+      background: #2e7d32;
+    }
+
+    /* ===== Layout >=600px ===== */
+    @media (width >= 600px) {
+      .grid {
+        grid-template-areas:
+          "header header"
+          "aside main"
+          "footer footer";
+        grid-template-columns: 200px 1fr;
+      }
+
+      aside {
+        display: block;
+        grid-area: aside;
+        background: #ddd;
+        padding: 1rem;
+      }
+    }
+
+    /* ===== Layout >=800px ===== */
+    @media (width >= 800px) {
+      .grid {
+        grid-template-columns: 250px 1fr;
+      }
+
+      main {
+        justify-content: flex-start;
+      }
+    }

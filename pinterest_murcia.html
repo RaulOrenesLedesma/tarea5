@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pinterest de Pueblos y Ciudades de Murcia</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Inspiración visual de pueblos y ciudades de la Región de Murcia al estilo Pinterest.">
+  <meta name="keywords" content="Murcia, pueblos, ciudades, turismo, Pinterest">
+  <meta name="author" content="Proyecto educativo">
+  <meta name="robots" content="index, follow">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grid">
+    <header>Pueblos y Ciudades de Murcia</header>
+
+    <aside>
+      <h3>Menú</h3>
+      <ul>
+        <li>Murcia</li>
+        <li>Cartagena</li>
+        <li>Lorca</li>
+        <li>Caravaca</li>
+      </ul>
+    </aside>
+
+    <main id="gallery">
+      <article class="card" data-liked="false">
+        <img src="imagenes/murcia3.jpg" alt="Murcia">
+        <div class="overlay">
+          <p>Murcia capital</p>
+          <div class="icons">
+            <span class="like">♡</span>
+            <a href="https://www.turismoregiondemurcia.es" target="_blank" style="color:white;">↗</a>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3>Murcia</h3>
+          <p>Ciudad universitaria y cultural.</p>
+          <button>Ver más</button>
+        </div>
+      </article>
+
+      <article class="card" data-liked="false">
+        <img src="imagenes/images.jpg" alt="Cartagena">
+        <div class="overlay">
+          <p>Cartagena</p>
+          <div class="icons">
+            <span class="like">♡</span>
+            <a href="https://www.cartagena.es" target="_blank" style="color:white;">↗</a>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3>Cartagena</h3>
+          <p>Historia romana y puerto natural.</p>
+          <button>Ver más</button>
+        </div>
+      </article>
+
+      <article class="card" data-liked="false">
+        <img src="imagenes/castillo-de-lorca.jpg" alt="Lorca">
+        <div class="overlay">
+          <p>Lorca</p>
+          <div class="icons">
+            <span class="like">♡</span>
+            <a href="https://www.lorca.es" target="_blank" style="color:white;">↗</a>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3>Lorca</h3>
+          <p>Conocida como la ciudad del sol.</p>
+          <button>Ver más</button>
+        </div>
+      </article>
+      <article class="card" data-liked="false">
+        <img src="imagenes/caravaca.png" alt="Caravaca">
+        <div class="overlay">
+          <p>Caravaca</p>
+          <div class="icons">
+            <span class="like">♡</span>
+            <a href="https://www.caravaca.org/" target="_blank" style="color:white;">↗</a>
+          </div>
+        </div>
+        <div class="card-content">
+          <h3>Caravaca</h3>
+          <p>Conocida como la ciudad del caballo.</p>
+          <button>Ver más</button>
+        </div>
+      </article>
+    </main>
+
+    <footer>Proyecto educativo - CSS Grid & Flex</footer>
+  </div>
+
+  <script>
+    const gallery = document.getElementById("gallery");
+
+    gallery.addEventListener("click", e => {
+      if (e.target.classList.contains("like")) {
+        const card = e.target.closest(".card");
+        const liked = card.dataset.liked === "true";
+
+        card.dataset.liked = !liked;
+        e.target.textContent = liked ? "♡" : "♥";
+        e.target.classList.toggle("active");
+
+        if (!liked) {
+          gallery.prepend(card);
+        }
+      }
+
+      if (e.target.tagName === "BUTTON") {
+        e.target.classList.toggle("clicked");
+        e.target.textContent = e.target.classList.contains("clicked") ? "Seleccionado" : "Ver más";
+      }
+    });
+  </script>
+</body>
+</html>
